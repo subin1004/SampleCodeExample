@@ -18,6 +18,7 @@ public class DetailActivity extends AppCompatActivity {
 
     // Extra name for the ID parameter: MainActivity에서 넘어온 Intent.Extra
     public static final String EXTRA_PARAM_ID = "detail:_id";
+    public static final String EXTRA_PARAM_ID_SPINNER = "detail:_id_spinner";
 
     // View name of the header image, title, content. Used for activity scene transitions
     public static final String VIEW_NAME_HEADER_IMAGE = "detail:header:image";
@@ -34,25 +35,19 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        supportPostponeEnterTransition();
 
         // Retrieve the correct Item instance, using the ID provided in the Intent
         mData = Data.getItem(getIntent().getStringExtra(EXTRA_PARAM_ID));
-
-//        Log.i("subin", mData.getTitle());    // 값이 없어서 log가 안찍힘 쮓
-//        Log.i("subin", mData.getContent();
 
         mHeaderImageView = findViewById(R.id.imageview_header);
         mHeaderTitle = findViewById(R.id.textview_title);
         mHeaderContent = findViewById(R.id.textview_content);
 
+        loadItem();
 
         ViewCompat.setTransitionName(mHeaderImageView, VIEW_NAME_HEADER_IMAGE);
         ViewCompat.setTransitionName(mHeaderTitle, VIEW_NAME_HEADER_TITLE);
         ViewCompat.setTransitionName(mHeaderContent, VIEW_NAME_HEADER_CONTENT);
-
-        loadItem();
-        supportStartPostponedEnterTransition();
 
     }
 

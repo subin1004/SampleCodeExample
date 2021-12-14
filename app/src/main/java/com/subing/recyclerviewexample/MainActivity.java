@@ -5,6 +5,7 @@ import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.util.Pair;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -150,19 +151,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.O
     // Button들 onClick Event
     public void onClickButton(View view) {
         Intent intent = new Intent(this, DetailActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
 
         createNotificationChannel();
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle(DATA_TITLE[buttonNumber])                         // 접혀있을때 보이는 title
-                .setContentText(NOTIFICATION_STYLES_DESCRIPTION[buttonNumber])     // 접혀있을때 보이는 text
-                .setPriority(NotificationCompat.PRIORITY_HIGH)                     // Head Up Notification: DEFAULT -> HIGH
-                .setFullScreenIntent(pendingIntent, true)                 // Head Up Notification added
-                // 위에서 정의한 pendingIntent 지정
-                .setContentIntent(pendingIntent)
-                .setAutoCancel(true);
 
         switch (view.getId())
         {
@@ -200,19 +193,23 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.O
                 break;
         }
 
-//        Bundle bundle = new Bundle();
-//        bundle.putInt("picture", imgThumb);
-//        bundle.putString("title", textTitle);
-//        bundle.putString("content", textContent);
-//        intent.putExtras(bundle);
+        intent.putExtra(DetailActivity.EXTRA_PARAM_ID, spinner.getSelectedItem().toString());
+        //Log.i("subin", "spinner selected item: " + spinner.getSelectedItem().toString());
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        // intent putExtra 부분을 함수로 따로 빼서 하는게 나을것같음 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+        builder.setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setContentTitle(DATA_TITLE[buttonNumber])                         // 접혀있을때 보이는 title
+                .setContentText(NOTIFICATION_STYLES_DESCRIPTION[buttonNumber])     // 접혀있을때 보이는 text
+                .setPriority(NotificationCompat.PRIORITY_HIGH)                     // Head Up Notification: DEFAULT -> HIGH
+                .setFullScreenIntent(pendingIntent, true)                 // Head Up Notification added
+                // 위에서 정의한 pendingIntent 지정
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
 
         //호출
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         notificationManager.notify(notificationId, builder.build());
-
     }
 
     // channel 만들기 method
@@ -236,5 +233,4 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.O
             notificationManager.createNotificationChannel(channel);
         }
     }
-
 }
