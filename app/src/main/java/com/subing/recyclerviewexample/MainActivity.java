@@ -122,8 +122,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.O
 
     }
 
-
-
     // recyclerview item click
     @Override
     public void onItemSelected(View view, int position) {
