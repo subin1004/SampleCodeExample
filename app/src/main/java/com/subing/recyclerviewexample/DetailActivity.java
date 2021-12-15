@@ -18,7 +18,6 @@ public class DetailActivity extends AppCompatActivity {
 
     // Extra name for the ID parameter: MainActivity에서 넘어온 Intent.Extra
     public static final String EXTRA_PARAM_ID = "detail:_id";
-    public static final String EXTRA_PARAM_ID_SPINNER = "detail:_id_spinner";
 
     // View name of the header image, title, content. Used for activity scene transitions
     public static final String VIEW_NAME_HEADER_IMAGE = "detail:header:image";
