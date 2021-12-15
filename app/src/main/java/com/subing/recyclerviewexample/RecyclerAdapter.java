@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
     // View에 들어갈 Data
-    private ArrayList<Data> listData = new ArrayList<>();
+    private ArrayList<Data> listData ;
     Context context;
 
     private OnListItemSelectedInterface mListener;

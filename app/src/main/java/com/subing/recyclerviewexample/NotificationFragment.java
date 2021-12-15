@@ -78,6 +78,7 @@ public class NotificationFragment extends Fragment implements View.OnClickListen
 
         mNotificationManagerCompat = NotificationManagerCompat.from(getContext());
 
+        createNotificationChannel();    // channel을 매번 만들 필요가 없기 때문에 일단 위로
         // Button OnClickListener 생성
         btn_bigText.setOnClickListener(this);
         btn_bigPicture.setOnClickListener(this);
@@ -144,12 +145,12 @@ public class NotificationFragment extends Fragment implements View.OnClickListen
     public void onClick(View v) {
         Intent intent = new Intent(getContext(), DetailActivity.class);
 
-        createNotificationChannel();
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), CHANNEL_ID);
 
-        switch (view.getId())
+        switch (v.getId())
         {
             case R.id.btn_bigText:
+                Log.i("subin", "btn_bigText case");
                 NotificationCompat.BigTextStyle style_bigText = new NotificationCompat.BigTextStyle()
                         .bigText(textContent);
                 builder.setStyle(style_bigText);
@@ -157,6 +158,7 @@ public class NotificationFragment extends Fragment implements View.OnClickListen
                 break;
 
             case R.id.btn_bigPicture:
+                Log.i("subin", "btn_bigPicture case");
                 NotificationCompat.BigPictureStyle style_bigPicture = new NotificationCompat.BigPictureStyle()
                         .bigPicture(
                                 BitmapFactory.decodeResource(
@@ -169,6 +171,7 @@ public class NotificationFragment extends Fragment implements View.OnClickListen
                 break;
 
             case R.id.btn_inbox:
+                Log.i("subin", "btn_inbox case");
                 NotificationCompat.InboxStyle style_inbox = new NotificationCompat.InboxStyle()
                         .addLine("one")
                         .addLine("two")
