@@ -82,7 +82,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.imageView.setImageResource(data.getPhoto());
         holder.textView.setText(data.getTitle());
         holder.textView2.setText(data.getContent());
-
     }
 
     @Override
