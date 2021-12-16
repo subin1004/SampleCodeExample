@@ -6,6 +6,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.util.Pair;
 import androidx.core.view.ViewCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,17 +25,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.subing.recyclerviewexample.databinding.ActivityMainBinding;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
-
 //    private NotificationFragment notificationFragment;
 //    private RecyclerFragment recyclerFragment;
-
+    private ActivityMainBinding binding;    // DataBinding 객체 생성
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
 //        notificationFragment = (NotificationFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_noti);
 //        recyclerFragment = (RecyclerFragment) getSupportFragmentManager().findFragmentById(R.id.recyclerView);
