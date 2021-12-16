@@ -7,18 +7,12 @@ import androidx.core.view.ViewCompat;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.util.Linkify;
 import android.transition.Transition;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -33,7 +27,6 @@ public class DetailActivity extends AppCompatActivity {
     private ImageView mHeaderImageView;
     private TextView mHeaderTitle;
     private TextView mHeaderContent;
-    private TextView mBodyContent;
 
     Data mData;
 
@@ -48,10 +41,8 @@ public class DetailActivity extends AppCompatActivity {
         mHeaderImageView = findViewById(R.id.imageview_header);
         mHeaderTitle = findViewById(R.id.textview_title);
         mHeaderContent = findViewById(R.id.textview_content);
-        mBodyContent = findViewById(R.id.textview_body);
 
         loadItem();
-        addLink();
 
         ViewCompat.setTransitionName(mHeaderImageView, VIEW_NAME_HEADER_IMAGE);
         ViewCompat.setTransitionName(mHeaderTitle, VIEW_NAME_HEADER_TITLE);
@@ -63,19 +54,6 @@ public class DetailActivity extends AppCompatActivity {
         mHeaderTitle.setText(getString(R.string.image_header, mData.getTitle(), "subin"));
         mHeaderContent.setText(mData.getContent());
         mHeaderImageView.setImageResource(mData.getPhoto());
-    }
-
-    private void addLink(){
-        Pattern pattern = Pattern.compile("여기");
-
-        Linkify.TransformFilter transformFilter = new Linkify.TransformFilter() {
-            @Override
-            public String transformUrl(Matcher match, String url) {
-                return mData.getTitle();
-            }
-        };
-
-        Linkify.addLinks(mBodyContent, pattern, "https://ko.wikipedia.org/wiki/", null, transformFilter);
     }
 
 //    private void loadThumbnail() {
