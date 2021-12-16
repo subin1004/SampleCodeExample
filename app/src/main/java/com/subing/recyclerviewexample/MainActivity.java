@@ -30,8 +30,8 @@ import com.subing.recyclerviewexample.databinding.ActivityMainBinding;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
-//    private NotificationFragment notificationFragment;
-//    private RecyclerFragment recyclerFragment;
+    private NotificationFragment notificationFragment;
+    private RecyclerFragment recyclerFragment;
     private ActivityMainBinding binding;    // DataBinding 객체 생성
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,19 +39,19 @@ public class MainActivity extends AppCompatActivity{
         //setContentView(R.layout.activity_main);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-//        notificationFragment = (NotificationFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_noti);
-//        recyclerFragment = (RecyclerFragment) getSupportFragmentManager().findFragmentById(R.id.recyclerView);
+        notificationFragment = (NotificationFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_noti);
+        recyclerFragment = (RecyclerFragment) getSupportFragmentManager().findFragmentById(R.id.recyclerView);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager
                 .beginTransaction()
-                //.replace(R.id.fragment_noti, new NotificationFragment(), NotificationFragment.class.getSimpleName()) 두개 겹쳐나옴
+                .replace(R.id.fragment_noti, new NotificationFragment(), NotificationFragment.class.getSimpleName())
                 .commit();
 
         FragmentManager fragmentManager2 = getSupportFragmentManager();
         fragmentManager2
                 .beginTransaction()
-               // .replace(R.id.fragment_recycler, new RecyclerFragment(), RecyclerFragment.class.getSimpleName()) 두개 겹쳐나옴
+                .replace(R.id.fragment_recycler, new RecyclerFragment(), RecyclerFragment.class.getSimpleName())
                 .commit();
     }
 }

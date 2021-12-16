@@ -10,9 +10,8 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <fragment
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fragment_recycler"
-            android:name="com.subing.recyclerviewexample.RecyclerFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
@@ -23,9 +22,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <fragment
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fragment_noti"
-            android:name="com.subing.recyclerviewexample.NotificationFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
