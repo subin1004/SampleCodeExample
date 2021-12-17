@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fragment_recycler"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -22,7 +22,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fragment_noti"
             android:layout_width="match_parent"
             android:layout_height="0dp"

@@ -22,7 +22,6 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class NotificationFragment extends Fragment implements View.OnClickListener{
     public static final int NOTIFICATION_ID = 888;

@@ -30,22 +30,22 @@ import com.subing.recyclerviewexample.databinding.ActivityMainBinding;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
-    private NotificationFragment notificationFragment;
-    private RecyclerFragment recyclerFragment;
+//    private NotificationFragment notificationFragment;
+//    private RecyclerFragment recyclerFragment;
     private ActivityMainBinding binding;    // DataBinding 객체 생성
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        setContentView(R.layout.activity_main);
 
-        notificationFragment = (NotificationFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_noti);
-        recyclerFragment = (RecyclerFragment) getSupportFragmentManager().findFragmentById(R.id.recyclerView);
+//        notificationFragment = (NotificationFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_noti);
+//        recyclerFragment = (RecyclerFragment) getSupportFragmentManager().findFragmentById(R.id.recyclerView);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager
                 .beginTransaction()
                 .replace(R.id.fragment_noti, new NotificationFragment(), NotificationFragment.class.getSimpleName())
+                .addToBackStack(null)
                 .commit();
 
         FragmentManager fragmentManager2 = getSupportFragmentManager();
