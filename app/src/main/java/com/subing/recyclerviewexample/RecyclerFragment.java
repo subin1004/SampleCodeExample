@@ -17,51 +17,45 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.subing.recyclerviewexample.databinding.FragmentRecyclerBinding;
+
 import java.util.ArrayList;
 
 public class RecyclerFragment extends Fragment implements RecyclerAdapter.OnListItemSelectedInterface{
 
+    // binding
+    private FragmentRecyclerBinding binding;
     private View view;
 
     // recyclerview
-    private RecyclerView recyclerView;
+//    private RecyclerView recyclerView;
     private RecyclerAdapter recyclerAdapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // view 추가
-        view = inflater.inflate(R.layout.fragment_recycler, container, false);
+        // view binding
+        binding = FragmentRecyclerBinding.inflate(inflater, container, false);
+        view = binding.getRoot();
 
-        //fragment에서는 그냥 findViewById로 Button id를 가져올 수 없음.
-        //인플레이터된 view를 사용하여 가져옴.
-        recyclerView = view.findViewById(R.id.recyclerView);
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
-
-        ArrayList<Data> data = new ArrayList<>(Data.DATA);
-
-        recyclerAdapter = new RecyclerAdapter(data, this);  // listener
-        recyclerView.setAdapter(recyclerAdapter);
-
+        recyclerInit();
         return view;
     }
 
     private void recyclerInit(){
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        binding.recyclerView.setLayoutManager(linearLayoutManager);
 
         ArrayList<Data> data = new ArrayList<>(Data.DATA);
 
         recyclerAdapter = new RecyclerAdapter(data, this);  // listener
-        recyclerView.setAdapter(recyclerAdapter);
+        binding.recyclerView.setAdapter(recyclerAdapter);
     }
 
     @Override
     public void onItemSelected(View view, int position) {
-        RecyclerAdapter.ViewHolder viewHolder = (RecyclerAdapter.ViewHolder) recyclerView.findViewHolderForAdapterPosition(position);
+        RecyclerAdapter.ViewHolder viewHolder = (RecyclerAdapter.ViewHolder) binding.recyclerView.findViewHolderForAdapterPosition(position);
 
         String extraTitle = viewHolder.textView.getText().toString();   // intentExtra = title
         Toast.makeText(getContext(), extraTitle, Toast.LENGTH_SHORT).show();
