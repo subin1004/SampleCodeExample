@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -22,6 +21,8 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
+import com.subing.recyclerviewexample.databinding.FragmentNotificationBinding;
+
 
 public class NotificationFragment extends Fragment implements View.OnClickListener{
     public static final int NOTIFICATION_ID = 888;
@@ -46,15 +47,17 @@ public class NotificationFragment extends Fragment implements View.OnClickListen
             "Demos messaging app using MESSAGING_STYLE + inline notification responses"
     };
 
-    private View view;
-    private Button btn_bigText;
-    private Button btn_bigPicture;
-    private Button btn_inbox;
+    // binding
+    private FragmentNotificationBinding binding;
 
+    private View view;
+//    private Button btn_bigText;
+//    private Button btn_bigPicture;
+//    private Button btn_inbox;
 
     // notification
     NotificationManagerCompat mNotificationManagerCompat;
-    Spinner spinner;
+    //Spinner spinner;
     private int mSelectedNotification = 0;
 
     // spinner
@@ -63,25 +66,29 @@ public class NotificationFragment extends Fragment implements View.OnClickListen
     String textContent;
     int buttonNumber;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_notification, container, false);
+//        view = inflater.inflate(R.layout.fragment_notification, container, false);
+//
+//        spinner = view.findViewById(R.id.spinner);
+//        btn_bigText = view.findViewById(R.id.btn_bigText);
+//        btn_bigPicture = view.findViewById(R.id.btn_bigPicture);
+//        btn_inbox = view.findViewById(R.id.btn_inbox);
 
-        spinner = view.findViewById(R.id.spinner);
-        btn_bigText = view.findViewById(R.id.btn_bigText);
-        btn_bigPicture = view.findViewById(R.id.btn_bigPicture);
-        btn_inbox = view.findViewById(R.id.btn_inbox);
+        // viewBinding
+        Log.i("subin", "NotificationFragment: onCreateView");
+        binding = FragmentNotificationBinding.inflate(inflater, container, false);
+        view = binding.getRoot();
 
         mNotificationManagerCompat = NotificationManagerCompat.from(getContext());
 
         createNotificationChannel();    // channel을 매번 만들 필요가 없기 때문에 일단 위로
         // Button OnClickListener 생성
-        btn_bigText.setOnClickListener(this);
-        btn_bigPicture.setOnClickListener(this);
-        btn_inbox.setOnClickListener(this);
+        binding.btnBigText.setOnClickListener(this);
+        binding.btnBigPicture.setOnClickListener(this);
+        binding.btnInbox.setOnClickListener(this);
 
         // spinner의 adapter 생성
         ArrayAdapter<CharSequence> adapter =
@@ -94,8 +101,8 @@ public class NotificationFragment extends Fragment implements View.OnClickListen
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // spinner의 어댑터 적용
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.spinner.setAdapter(adapter);
+        binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.i("subin", "onItemSelected(): position: " + position + " id: " + id);
@@ -112,8 +119,6 @@ public class NotificationFragment extends Fragment implements View.OnClickListen
                 mSelectedNotification = 0;
             }
         });
-
-
         return view;
     }
 
@@ -185,7 +190,7 @@ public class NotificationFragment extends Fragment implements View.OnClickListen
                 break;
         }
 
-        intent.putExtra(DetailActivity.EXTRA_PARAM_ID, spinner.getSelectedItem().toString());
+        intent.putExtra(DetailActivity.EXTRA_PARAM_ID, binding.spinner.getSelectedItem().toString());
         //Log.i("subin", "spinner selected item: " + spinner.getSelectedItem().toString());
         PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
