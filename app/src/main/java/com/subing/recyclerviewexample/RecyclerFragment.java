@@ -66,7 +66,7 @@ public class RecyclerFragment extends Fragment implements RecyclerAdapter.OnList
         ActivityOptionsCompat options = ActivityOptionsCompat
                 .makeSceneTransitionAnimation(
 //                        MainActivity.this, view, ViewCompat.getTransitionName(view) // 이거는 창 전체를 이동할 때
-                        // View와 ViewName을 쌍으로 여러개 전달
+                        // View와 ViewName을 쌍으로 여러개 전달 (Shared Element Transition)
                         getActivity(),
                         new Pair<>(view.findViewById(R.id.imageView), DetailActivity.VIEW_NAME_HEADER_IMAGE),
                         new Pair<>(view.findViewById(R.id.textView), DetailActivity.VIEW_NAME_HEADER_TITLE),
