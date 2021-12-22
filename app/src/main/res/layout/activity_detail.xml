@@ -6,6 +6,7 @@
             name="selected"
             type="com.subing.recyclerviewexample.Data" />
     </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -15,6 +16,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!--이미지 리소스 Databinding으로 사용하려면 imageResource 속성 사용!!!!-->
             <com.subing.recyclerviewexample.SquareFrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

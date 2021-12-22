@@ -36,18 +36,12 @@ public class DetailActivity extends AppCompatActivity {
 
     Data mData;
 
-    // image DataBinding
-    @BindingAdapter({"bind:photo"})
-    public static void imgload(ImageView imageView, int resid) {
-        imageView.setImageResource(resid);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
 
-        // Retrieve the correct Item instance, using the ID provided in the Intent
+        // Intent extra로 받아와 Item 인스턴스 가져오기.
         mData = Data.getItem(getIntent().getStringExtra(EXTRA_PARAM_ID));
         binding.setSelected(mData);
 
@@ -56,7 +50,6 @@ public class DetailActivity extends AppCompatActivity {
         ViewCompat.setTransitionName(binding.imageviewHeader, VIEW_NAME_HEADER_IMAGE);
         ViewCompat.setTransitionName(binding.textviewTitle, VIEW_NAME_HEADER_TITLE);
         ViewCompat.setTransitionName(binding.textviewContent, VIEW_NAME_HEADER_CONTENT);
-
     }
 
     private void addLink(){
