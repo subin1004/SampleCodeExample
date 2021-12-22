@@ -1,33 +1,9 @@
 package com.subing.recyclerviewexample;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-import androidx.core.util.Pair;
-import androidx.core.view.ViewCompat;
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.Toast;
-
 import com.subing.recyclerviewexample.databinding.ActivityMainBinding;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
 //    private NotificationFragment notificationFragment;
